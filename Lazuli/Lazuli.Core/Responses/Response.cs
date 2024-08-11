@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lazuli.Core.Responses
 {
-    public abstract class Response<TData>
+    public class Response<TData>
     {
         // http status code
         private int _code = Configuration.DefaultStatusCode;
