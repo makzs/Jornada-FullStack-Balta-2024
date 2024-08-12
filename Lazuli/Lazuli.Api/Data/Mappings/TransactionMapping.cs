@@ -27,7 +27,7 @@ namespace Lazuli.Api.Data.Mappings
                 .IsRequired(true)
                 .HasColumnType("MONEY");
 
-            builder.Property(x => x.createdAt)
+            builder.Property(x => x.CreatedAt)
                 .IsRequired(true);
 
             builder.Property(x => x.PaidOrReceivedAt)

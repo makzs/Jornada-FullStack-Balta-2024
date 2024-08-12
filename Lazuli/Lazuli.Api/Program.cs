@@ -1,16 +1,20 @@
-using Lazuli.Api.Data;
-using Lazuli.Api.Handlers;
-using Lazuli.Core.Handlers;
-using Microsoft.EntityFrameworkCore;
+using Lazuli.Api;
+using Lazuli.Api.Common.Api;
+using Lazuli.Api.Endpoints;
+using Lazuli.Core;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data Source=Lazuli.db"));
-builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
-builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
+builder.AddConfiguration();
+builder.AddDataContexts();
+builder.AddCrossOrigin();
+builder.AddDocumentation();
+builder.AddServices();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+    app.ConfigureDevEnvironment();
 
-app.MapGet("/", () => "Hello World!");
+app.UseCors(ApiConfiguration.CorsPolicyName);
+app.MapEndpoints();
 
 app.Run();

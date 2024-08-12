@@ -13,7 +13,7 @@ namespace Lazuli.Core.Responses
         private int _code = Configuration.DefaultStatusCode;
         // se o codigo esta entre 200 e 299 é um codigo de sucesso! 
         [JsonIgnore]
-        public bool IsSucess => _code is >= 200 and <= 299;
+        public bool IsSuccess => _code is >= 200 and <= 299;
 
         //Construtor vazio para evitar erros em json
         [JsonConstructor]
