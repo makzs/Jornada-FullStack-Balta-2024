@@ -16,6 +16,7 @@ namespace Lazuli.Web.Handlers
 
         public async Task<Response<Category?>> CreateAsync(CreateCategoryRequest request)
         {
+            await Task.Delay(5000);
             var result = await _client.PostAsJsonAsync("v1/categories", request);
             return await result.Content.ReadFromJsonAsync<Response<Category?>>()
                 ?? new Response<Category?>(null, 400, "Falha ao criar categoria");
